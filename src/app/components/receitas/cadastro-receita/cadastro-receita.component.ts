@@ -26,7 +26,7 @@ salvarReceita(){
     return;
   }
 
-  if(this.nome.length >100){
+  if(this.nome.length >30){
     alert("Nome deve contar no máximo 30 caracteres")
     return;
   }
