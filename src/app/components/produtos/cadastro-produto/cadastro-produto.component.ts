@@ -16,6 +16,16 @@ idParaEditar?: number;
 
 nome: string = "";
 
+categoria: string = "";
+
+quantidade: number = 0;
+
+preco: number = 0;
+
+vencido: boolean = false;
+
+estoque: number = 0;
+
 produtos: Array<Produto> = [];
 
 salvarProduto(){
@@ -36,19 +46,27 @@ salvarProduto(){
   }
 
   this.nome = "";
+  this.categoria = "";
+  
+ 
 
 }
 
 editarProduto(){
   let indiceProduto = this.produtos.findIndex(x => x.id == this.idParaEditar);
   this.produtos[indiceProduto].nome = this.nome;
+  this.produtos[indiceProduto].categoria = this.categoria;
+  this.produtos[indiceProduto].quantidade = this.quantidade;
+  this.produtos[indiceProduto].preco = this.preco;
+  this.produtos[indiceProduto].vencido = this.vencido;
+  this.produtos[indiceProduto].estoque = this.estoque;
 
   this.idParaEditar = undefined;
 }
 
 cadastrarProduto(){
   this.proximoId++;
-  let produto = new Produto(this.proximoId, this.nome);
+  let produto = new Produto(this.proximoId, this.nome, this.categoria, this.quantidade, this.preco, this.vencido, this.estoque,);
   this.produtos.push(produto);
 }
 apagar(produto: Produto){
@@ -59,6 +77,11 @@ apagar(produto: Produto){
 editar(produto: Produto){
   this.nome = produto.nome;
   this.idParaEditar = produto.id;
+  this.categoria = produto.categoria;
+  this.quantidade = produto.quantidade;
+  this.preco = produto.preco;
+  this.vencido = produto.vencido;
+  this.estoque = produto.estoque;
 }
 
 }
