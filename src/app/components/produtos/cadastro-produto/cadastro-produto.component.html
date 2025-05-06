@@ -32,15 +32,14 @@
         </div>
         <div class="formulario-tabela">
             <label>Produto Vencido?</label>
-            <input type="radio" name="vencido" [(ngModel)]="vencido" value="true"> Sim
-            <input type="radio" name="vencido" [(ngModel)]="vencido" value="false"> Não
+            <input type="radio" name="vencido" [(ngModel)]="vencido" value="Sim"> Sim
+            <input type="radio" name="vencido" [(ngModel)]="vencido" value="Não"> Não
         </div>
 
         <div class="formulario-tabela">
             <label for="estoque">Em estoque ?</label>
             <input type="checkbox" name="estoque" id="estoque" [(ngModel)]="estoque">
         </div>
-
         <button (click)="salvarProduto()">Salvar</button>
     </div>
     <div class="tabela">
@@ -52,8 +51,8 @@
                     <th>Categoria</th>
                     <th>Quantidade</th>
                     <th>Preço Unitário</th>
-                    <th>Vencido</th>
-                    <th>Estoque</th>
+                    <th>Vencido ?</th>
+                    <th>Estoque ?</th>
                 </tr>
             </thead>
             <tbody>
