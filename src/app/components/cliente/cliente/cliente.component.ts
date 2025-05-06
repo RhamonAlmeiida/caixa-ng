@@ -84,6 +84,8 @@ export class ClienteComponent {
   }
 
   preencherCamposParaEditar(cliente: Cliente){
-    this.cliente = cliente;
+    this.cliente = new Cliente();
+    this.cliente.id = cliente.id;
+    this.cliente.nome = cliente.nome;
   }
 }
