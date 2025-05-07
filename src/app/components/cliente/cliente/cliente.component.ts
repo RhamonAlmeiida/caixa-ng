@@ -1,17 +1,22 @@
 import { Component } from '@angular/core';
 import { ClienteCadastroComponent } from "../cliente-cadastro/cliente-cadastro.component";
 import { Cliente } from '../../../models/cliente';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-cliente',
-  imports: [ClienteCadastroComponent],
+  imports: [ClienteCadastroComponent, FormsModule],
   templateUrl: './cliente.component.html',
   styleUrl: './cliente.component.css'
 })
 export class ClienteComponent {
-  clientes: Array<Cliente> = [];
+  clientes: Array<Cliente> = new Array();
+  clientesTable: Array<Cliente> = new Array();
+
+
   idAtual: number = 0;
 
+  busca: string = "";
   // Será o cliente que utilizaremos para preencher os campos na tela e posteriormente salvar
   cliente: Cliente;
 
@@ -32,10 +37,12 @@ export class ClienteComponent {
 
   this.cliente = new Cliente();
     this.salvarEmLocalStorage();
+    this.listarClientesFiltrando();
    }
 
   private editar(){
     let indicecliente = this.clientes.findIndex(x => x.id == this.cliente.id);
+    this.clientes[indicecliente].nome = this.cliente.nome;
     this.clientes[indicecliente].nome = this.cliente.nome;
   }
 
@@ -45,6 +52,15 @@ export class ClienteComponent {
     this.cliente.id = this.idAtual;
     // Adicionando este objeto na lista de clientes
     this.clientes.push(this.cliente);
+  }
+
+  listarClientesFiltrando(){
+    if(!this.busca)
+      this.clientesTable = this.clientes;
+
+
+    this.clientesTable = this.clientes
+    .filter(cliente => cliente.nome.toLowerCase().includes(this.busca.toLowerCase()) || cliente.nome == this.busca);
   }
 
   salvarEmLocalStorage(){
@@ -64,6 +80,8 @@ export class ClienteComponent {
     return;
     // Converter a string(JSON) para lista de objetos
     this.clientes = JSON.parse(clientesString);
+    this.listarClientesFiltrando();
+    
   // Percorre cada um dos clientes para atualizar o idAtual com o maior id dos clientes cadastrados
     Array.from(this.clientes).forEach(cliente => {
       if (cliente.id > this.idAtual){
@@ -81,11 +99,13 @@ export class ClienteComponent {
     this.clientes.splice(indicecliente, 1);
 
     this.salvarEmLocalStorage();
+    this.listarClientesFiltrando();
   }
 
   preencherCamposParaEditar(cliente: Cliente){
     this.cliente = new Cliente();
     this.cliente.id = cliente.id;
     this.cliente.nome = cliente.nome;
+    this.cliente.cpf = cliente.cpf;
   }
 }
