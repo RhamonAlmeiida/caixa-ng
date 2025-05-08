@@ -1,0 +1,34 @@
+
+<div class="tabela">
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Quantidade</th>
+                <th>Data de entrada</th>
+                <th>Estoque ?</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(estoque of estoques; track estoque){
+            <tr>
+                <td>{{estoque.id}}</td>
+                <td>{{estoque.nome}}</td>
+                <td>{{estoque.categoria}}</td>
+                <td>{{estoque.quantidade}}</td>
+                <td>{{estoque.entrada}}</td>
+                <td>{{estoque.estoque}}</td>
+                <td>
+                    <button (click)="editar(estoque)">Editar</button>
+                    <button (click)="apagar(estoque)">Apagar</button>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

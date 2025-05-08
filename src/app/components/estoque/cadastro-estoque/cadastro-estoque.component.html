@@ -1,0 +1,42 @@
+
+
+<div class="container"></div>
+    <h1>Estoque</h1>
+
+    <div class="formulario-tabela">
+        <div class="formulario">
+            <div>
+                <label for="campo-nome">Nome : </label>
+                <input type="text" id="campo-nome" placeholder="Digite um texto" [(ngModel)]="nome">
+
+            </div>
+            <div class="formulario-tabela">
+                <label for="categoria">Categoria : </label>
+                <select class="formulario-tabela" name="categoria" id="categoria" [(ngModel)]="categoria">
+                    <option value="frutas">Frutas</option>
+                    <option value="vegetais">Vegetais</option>
+                    <option value="carnes">Carnes</option>
+                    <option value="laticinios">Laticínios</option>
+                    <option value="grãos">Grãos</option>
+                    <option value="doces">Doces</option>
+                    <option value="bebidas">Bebidas</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="formulario-tabela">
+            <label for="quantidade">Quantidade : </label>
+            <input type="number" name="quantidade" id="quantidade" [(ngModel)]="quantidade">
+        </div>
+        <div class="formulario-tabela">
+            <label for="data-entrada">Data de entrada : </label>
+            <input type="date" name="data-entrada" id="data-entrada" [(ngModel)]="dataEntrada">
+        </div>
+
+        <div class="formulario-tabela">
+            <label for="emestoque">Em estoque ?</label>
+            <input type="checkbox" name="emestoque" id="emestoque" [(ngModel)]="emestoque">
+        </div>
+        <button class="salvar" (click)="salvarNoEstoque()">Cadastrar</button>
+    </div>
+   
